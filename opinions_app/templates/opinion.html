@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мнение о фильме</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .opinion-card {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-top: 30px;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .opinion-title {
+            font-size: 28px;
+            color: #2c3e50;
+            margin-top: 0;
+        }
+        .opinion-text {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #34495e;
+            margin: 20px 0;
+        }
+        .opinion-source {
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+        .opinion-source a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        .opinion-source a:hover {
+            text-decoration: underline;
+        }
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 10px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover {
+            background-color: #2980b9;
+        }
+        .btn-secondary {
+            background-color: #95a5a6;
+        }
+        .btn-secondary:hover {
+            background-color: #7f8c8d;
+        }
+        .no-opinion {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .no-opinion p {
+            font-size: 18px;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎬 Что посмотреть?</h1>
+    
+    {% if opinion %}
+    <div class="opinion-card">
+        <h2 class="opinion-title">{{ opinion.title }}</h2>
+        <div class="opinion-text">{{ opinion.text }}</div>
+        {% if opinion.source %}
+        <div class="opinion-source">
+            <strong>Источник:</strong> <a href="{{ opinion.source }}" target="_blank">{{ opinion.source }}</a>
+        </div>
+        {% endif %}
+        <div class="buttons">
+            <a href="/" class="btn">Следующее мнение 🎲</a>
+            <a href="/add" class="btn btn-secondary">Добавить своё мнение ✍️</a>
+        </div>
+    </div>
+    {% else %}
+    <div class="no-opinion">
+        <p>😕 Пока нет мнений о фильмах. Будьте первым!</p>
+        <a href="/add" class="btn">Добавить мнение ✍️</a>
+    </div>
+    {% endif %}
+</body>
+</html>
