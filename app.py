@@ -1,5 +1,3 @@
-# what_to_watch/opinions_app.py
-
 import csv
 from datetime import datetime
 from random import randrange
